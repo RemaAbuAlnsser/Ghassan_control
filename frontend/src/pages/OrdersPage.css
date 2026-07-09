@@ -1,0 +1,38 @@
+.order-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.order-items-table th,
+.order-items-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+
+.order-items-table th {
+  color: var(--accent-strong);
+  background: var(--code-bg);
+}
+
+.order-details-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--accent-strong);
+  padding: 8px 10px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 480px) {
+  .order-items-table {
+    font-size: 12px;
+  }
+
+  .order-items-table th,
+  .order-items-table td {
+    padding: 6px;
+  }
+}

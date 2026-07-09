@@ -10,12 +10,15 @@ import * as path from 'path';
 import { Category } from './entities/category.entity';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Product } from '../products/entities/product.entity';
 
 @Injectable()
 export class CategoriesService {
   constructor(
     @InjectRepository(Category)
     private readonly categoriesRepository: Repository<Category>,
+    @InjectRepository(Product)
+    private readonly productsRepository: Repository<Product>,
   ) {}
 
   create(dto: CreateCategoryDto, imagePath?: string): Promise<Category> {
@@ -71,6 +74,15 @@ export class CategoriesService {
     if (category.subcategories.length > 0) {
       throw new ConflictException(
         'لا يمكن حذف صنف يحتوي على أصناف فرعية، احذف الأصناف الفرعية أولاً',
+      );
+    }
+
+    const productsCount = await this.productsRepository.count({
+      where: { categoryId: id },
+    });
+    if (productsCount > 0) {
+      throw new ConflictException(
+        'لا يمكن حذف صنف مرتبط بمنتجات، احذف أو عدّل هذه المنتجات أولاً',
       );
     }
 

@@ -1,4 +1,4 @@
-import { apiClient } from './client'
+import { adminApiClient } from './client'
 import type { Subcategory, SubcategoryFormValues } from '../types/category'
 
 function toFormData(values: SubcategoryFormValues): FormData {
@@ -13,7 +13,7 @@ function toFormData(values: SubcategoryFormValues): FormData {
 export async function createSubcategory(
   values: SubcategoryFormValues,
 ): Promise<Subcategory> {
-  const { data } = await apiClient.post<Subcategory>('/subcategories', toFormData(values), {
+  const { data } = await adminApiClient.post<Subcategory>('/subcategories', toFormData(values), {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
   return data
@@ -23,7 +23,7 @@ export async function updateSubcategory(
   id: number,
   values: SubcategoryFormValues,
 ): Promise<Subcategory> {
-  const { data } = await apiClient.patch<Subcategory>(
+  const { data } = await adminApiClient.patch<Subcategory>(
     `/subcategories/${id}`,
     toFormData(values),
     { headers: { 'Content-Type': 'multipart/form-data' } },
@@ -32,5 +32,5 @@ export async function updateSubcategory(
 }
 
 export async function deleteSubcategory(id: number): Promise<void> {
-  await apiClient.delete(`/subcategories/${id}`)
+  await adminApiClient.delete(`/subcategories/${id}`)
 }

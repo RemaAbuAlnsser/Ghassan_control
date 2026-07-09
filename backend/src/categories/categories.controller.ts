@@ -8,16 +8,19 @@ import {
   Patch,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { createImageUploadOptions } from '../common/image-upload.options';
+import { AdminAuthGuard } from '../auth/guards/admin-auth.guard';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
 const imageUploadOptions = createImageUploadOptions('./uploads/categories');
 
+@UseGuards(AdminAuthGuard)
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}

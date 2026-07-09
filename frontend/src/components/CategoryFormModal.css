@@ -124,3 +124,25 @@
 .btn:hover:not(:disabled) {
   opacity: 0.85;
 }
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-width: none;
+    max-height: 92vh;
+    border-radius: 16px 16px 0 0;
+    padding: 20px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+}

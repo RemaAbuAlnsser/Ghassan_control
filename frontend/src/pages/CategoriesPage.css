@@ -6,6 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
@@ -140,4 +142,64 @@
 
 .btn.danger:hover {
   background: var(--danger-bg);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.status-badge.active {
+  color: var(--accent-strong);
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.status-badge.inactive {
+  color: var(--silver);
+  background: rgba(201, 203, 209, 0.08);
+  border-color: var(--silver-border);
+}
+
+.search-bar {
+  margin-bottom: 16px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 320px;
+  font: inherit;
+  font-size: 15px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-h);
+}
+
+.search-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+@media (max-width: 640px) {
+  .page-header h1 {
+    font-size: 22px;
+  }
+
+  .page-header .btn {
+    width: 100%;
+  }
+
+  .search-input {
+    max-width: none;
+  }
+
+  .categories-table {
+    min-width: 560px;
+  }
 }

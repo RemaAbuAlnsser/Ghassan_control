@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as fs from 'fs';
@@ -7,6 +11,7 @@ import { Subcategory } from './entities/subcategory.entity';
 import { CreateSubcategoryDto } from './dto/create-subcategory.dto';
 import { UpdateSubcategoryDto } from './dto/update-subcategory.dto';
 import { Category } from '../categories/entities/category.entity';
+import { Product } from '../products/entities/product.entity';
 
 @Injectable()
 export class SubcategoriesService {
@@ -15,6 +20,8 @@ export class SubcategoriesService {
     private readonly subcategoriesRepository: Repository<Subcategory>,
     @InjectRepository(Category)
     private readonly categoriesRepository: Repository<Category>,
+    @InjectRepository(Product)
+    private readonly productsRepository: Repository<Product>,
   ) {}
 
   async create(
@@ -70,6 +77,16 @@ export class SubcategoriesService {
 
   async remove(id: number): Promise<void> {
     const subcategory = await this.findOne(id);
+
+    const productsCount = await this.productsRepository.count({
+      where: { subcategoryId: id },
+    });
+    if (productsCount > 0) {
+      throw new ConflictException(
+        'لا يمكن حذف صنف فرعي مرتبط بمنتجات، احذف أو عدّل هذه المنتجات أولاً',
+      );
+    }
+
     this.removeImageFile(subcategory.image);
     await this.subcategoriesRepository.remove(subcategory);
   }

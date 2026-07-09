@@ -5,6 +5,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { SubcategoriesModule } from './subcategories/subcategories.module';
+import { CompaniesModule } from './companies/companies.module';
+import { MerchantsModule } from './merchants/merchants.module';
+import { ProductsModule } from './products/products.module';
+import { AuthModule } from './auth/auth.module';
+import { OrdersModule } from './orders/orders.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { SettingsModule } from './settings/settings.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -26,6 +34,14 @@ import { SubcategoriesModule } from './subcategories/subcategories.module';
     }),
     CategoriesModule,
     SubcategoriesModule,
+    CompaniesModule,
+    MerchantsModule,
+    ProductsModule,
+    AuthModule,
+    OrdersModule,
+    DashboardModule,
+    SettingsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

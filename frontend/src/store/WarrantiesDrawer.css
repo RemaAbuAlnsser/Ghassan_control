@@ -1,0 +1,126 @@
+.warranties-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.warranties-drawer {
+  background: var(--bg-elevated);
+  border-inline-end: 1px solid var(--border);
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  text-align: right;
+  overflow-y: auto;
+}
+
+.warranties-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.warranties-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.warranties-close {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.warranties-empty {
+  color: var(--text);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.warranties-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.warranty-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.warranty-item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.warranty-item-image.placeholder {
+  background: var(--code-bg);
+}
+
+.warranty-item-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.warranty-item-body h3 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-h);
+}
+
+.warranty-item-meta {
+  font-size: 12px;
+  color: var(--silver);
+  margin: 0;
+}
+
+.warranty-badge {
+  display: inline-block;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.warranty-badge.active {
+  color: var(--accent-strong);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+}
+
+.warranty-badge.expired {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+}
+
+@media (max-width: 480px) {
+  .warranties-drawer {
+    max-width: none;
+    padding: 16px;
+  }
+}

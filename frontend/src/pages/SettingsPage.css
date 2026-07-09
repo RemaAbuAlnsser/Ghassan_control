@@ -1,0 +1,39 @@
+.settings-form {
+  max-width: 640px;
+}
+
+.settings-section {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.settings-section h2 {
+  font-size: 18px;
+  color: var(--accent-strong);
+  margin: 0 0 16px;
+}
+
+.settings-success {
+  color: var(--accent-strong);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.favicon-preview-img {
+  max-width: 48px;
+  max-height: 48px;
+}
+
+@media (max-width: 640px) {
+  .settings-section {
+    padding: 16px;
+  }
+
+  .settings-form .field-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

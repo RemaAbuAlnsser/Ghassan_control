@@ -7,16 +7,19 @@ import {
   Patch,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { createImageUploadOptions } from '../common/image-upload.options';
+import { AdminAuthGuard } from '../auth/guards/admin-auth.guard';
 import { SubcategoriesService } from './subcategories.service';
 import { CreateSubcategoryDto } from './dto/create-subcategory.dto';
 import { UpdateSubcategoryDto } from './dto/update-subcategory.dto';
 
 const imageUploadOptions = createImageUploadOptions('./uploads/subcategories');
 
+@UseGuards(AdminAuthGuard)
 @Controller('subcategories')
 export class SubcategoriesController {
   constructor(private readonly subcategoriesService: SubcategoriesService) {}

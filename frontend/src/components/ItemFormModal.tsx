@@ -10,6 +10,9 @@ export interface ItemFormSubmitValues {
 
 interface Props {
   title: string
+  namePlaceholder?: string
+  descriptionLabel?: string
+  descriptionPlaceholder?: string
   initialName?: string
   initialDescription?: string
   initialImageUrl?: string | null
@@ -20,6 +23,9 @@ interface Props {
 
 export default function ItemFormModal({
   title,
+  namePlaceholder = 'مثال: أجهزة قهوة',
+  descriptionLabel = 'الوصف',
+  descriptionPlaceholder = 'وصف مختصر',
   initialName = '',
   initialDescription = '',
   initialImageUrl = null,
@@ -77,17 +83,17 @@ export default function ItemFormModal({
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="مثال: أجهزة قهوة"
+              placeholder={namePlaceholder}
               autoFocus
             />
           </label>
 
           <label className="field">
-            <span>الوصف</span>
+            <span>{descriptionLabel}</span>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="وصف مختصر"
+              placeholder={descriptionPlaceholder}
               rows={3}
             />
           </label>

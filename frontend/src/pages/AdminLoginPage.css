@@ -1,0 +1,41 @@
+.admin-login-page {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 20px;
+}
+
+.admin-login-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.admin-login-logo {
+  width: 140px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.admin-login-card h1 {
+  font-size: 20px;
+  margin: 0 0 24px;
+  color: var(--text-h);
+}
+
+.admin-login-card .field {
+  text-align: right;
+}
+
+.admin-login-submit {
+  width: 100%;
+  padding: 11px;
+  margin-top: 4px;
+}
