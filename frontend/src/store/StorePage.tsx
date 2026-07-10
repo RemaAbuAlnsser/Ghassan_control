@@ -12,6 +12,7 @@ import type { CartLine } from './CartDrawer'
 import WarrantiesDrawer from './WarrantiesDrawer'
 import StoreHero from './StoreHero'
 import StoreFooter from './StoreFooter'
+import { loadMetaPixel } from '../utils/metaPixel'
 import defaultLogo from '../assets/logo.png'
 import './StorePage.css'
 
@@ -54,6 +55,10 @@ export default function StorePage() {
     setCart([])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.token])
+
+  useEffect(() => {
+    if (settings?.metaPixelId) loadMetaPixel(settings.metaPixelId)
+  }, [settings?.metaPixelId])
 
   function addToCart(product: StoreProduct, quantity: number) {
     setCart((prev) => {

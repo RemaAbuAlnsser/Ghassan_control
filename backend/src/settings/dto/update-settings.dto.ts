@@ -27,6 +27,15 @@ export class UpdateSettingsDto {
   instagramUrl?: string;
 
   @IsOptional()
+  @IsUrl()
+  tiktokUrl?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(50)
+  metaPixelId?: string;
+
+  @IsOptional()
   @IsString()
   @MaxLength(500)
   heroTitle?: string;

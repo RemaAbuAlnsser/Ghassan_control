@@ -14,6 +14,8 @@ export async function updateSettings(values: Partial<SettingsFormValues>): Promi
   if (values.whatsapp) formData.append('whatsapp', values.whatsapp)
   if (values.facebookUrl) formData.append('facebookUrl', values.facebookUrl)
   if (values.instagramUrl) formData.append('instagramUrl', values.instagramUrl)
+  if (values.tiktokUrl) formData.append('tiktokUrl', values.tiktokUrl)
+  if (values.metaPixelId) formData.append('metaPixelId', values.metaPixelId)
   if (values.heroTitle) formData.append('heroTitle', values.heroTitle)
   if (values.heroDescription !== undefined) formData.append('heroDescription', values.heroDescription)
   if (values.heroLoopWords !== undefined) formData.append('heroLoopWords', values.heroLoopWords)

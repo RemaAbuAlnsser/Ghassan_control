@@ -3,6 +3,7 @@ import DashboardLayout from './layouts/DashboardLayout'
 import DashboardPage from './pages/DashboardPage'
 import CategoriesPage from './pages/CategoriesPage'
 import CompaniesPage from './pages/CompaniesPage'
+import PartnersPage from './pages/PartnersPage'
 import MerchantsPage from './pages/MerchantsPage'
 import ProductsPage from './pages/ProductsPage'
 import OrdersPage from './pages/OrdersPage'
@@ -22,6 +23,7 @@ function App() {
           <Route index element={<DashboardPage />} />
           <Route path="categories" element={<CategoriesPage />} />
           <Route path="companies" element={<CompaniesPage />} />
+          <Route path="partners" element={<PartnersPage />} />
           <Route path="merchants" element={<MerchantsPage />} />
           <Route path="products" element={<ProductsPage />} />
           <Route path="orders" element={<OrdersPage />} />

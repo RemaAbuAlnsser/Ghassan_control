@@ -42,6 +42,8 @@ export class SettingsService {
     if (dto.whatsapp !== undefined) settings.whatsapp = dto.whatsapp;
     if (dto.facebookUrl !== undefined) settings.facebookUrl = dto.facebookUrl;
     if (dto.instagramUrl !== undefined) settings.instagramUrl = dto.instagramUrl;
+    if (dto.tiktokUrl !== undefined) settings.tiktokUrl = dto.tiktokUrl;
+    if (dto.metaPixelId !== undefined) settings.metaPixelId = dto.metaPixelId;
     if (dto.heroTitle !== undefined) settings.heroTitle = dto.heroTitle;
     if (dto.heroDescription !== undefined) settings.heroDescription = dto.heroDescription;
     if (dto.heroLoopWords !== undefined) settings.heroLoopWords = dto.heroLoopWords;

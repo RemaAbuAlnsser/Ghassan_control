@@ -12,6 +12,7 @@ const navItems = [
   { to: '/admin', label: 'الرئيسية', end: true },
   { to: '/admin/categories', label: 'الأصناف' },
   { to: '/admin/companies', label: 'الشركات' },
+  { to: '/admin/partners', label: 'تعاملت مع' },
   { to: '/admin/merchants', label: 'تجار الجملة' },
   { to: '/admin/products', label: 'المنتجات' },
   { to: '/admin/orders', label: 'الطلبات' },

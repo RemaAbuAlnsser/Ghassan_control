@@ -8,6 +8,8 @@ export interface Settings {
   whatsapp: string | null
   facebookUrl: string | null
   instagramUrl: string | null
+  tiktokUrl: string | null
+  metaPixelId: string | null
   heroTitle: string
   heroDescription: string | null
   heroLoopWords: string | null
@@ -21,6 +23,8 @@ export interface SettingsFormValues {
   whatsapp: string
   facebookUrl: string
   instagramUrl: string
+  tiktokUrl: string
+  metaPixelId: string
   heroTitle: string
   heroDescription: string
   heroLoopWords: string

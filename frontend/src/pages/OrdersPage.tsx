@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Order } from '../types/order'
 import { deleteOrder, fetchOrders, updateOrderStatus } from '../api/orders'
+import { resolveImageUrl } from '../api/client'
 import './CategoriesPage.css'
 import './OrdersPage.css'
 
@@ -93,11 +94,7 @@ export default function OrdersPage() {
                   <td>#{order.id}</td>
                   <td>{order.merchant.name}</td>
                   <td>{regionLabels[order.merchant.region]}</td>
-                  <td>
-                    <button className="btn secondary" onClick={() => setDetailsOrder(order)}>
-                      {order.items.length} منتج
-                    </button>
-                  </td>
+                  <td>{order.items.length} منتج</td>
                   <td>{formatMoney(order.total)}</td>
                   <td>
                     <span
@@ -108,6 +105,17 @@ export default function OrdersPage() {
                   </td>
                   <td>{formatDate(order.createdAt)}</td>
                   <td className="actions-cell">
+                    <button
+                      className="btn secondary icon-action-btn"
+                      onClick={() => setDetailsOrder(order)}
+                      aria-label="عرض تفاصيل الطلب"
+                      title="عرض تفاصيل الطلب"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </button>
                     <button className="btn secondary" onClick={() => handleToggleStatus(order)}>
                       {order.status === 'completed' ? 'إعادة لقيد الانتظار' : 'وضع علامة مكتمل'}
                     </button>
@@ -124,28 +132,81 @@ export default function OrdersPage() {
 
       {detailsOrder && (
         <div className="modal-overlay" onClick={() => setDetailsOrder(null)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>تفاصيل الطلب #{detailsOrder.id}</h2>
-            <table className="order-items-table">
-              <thead>
-                <tr>
-                  <th>المنتج</th>
-                  <th>الكمية</th>
-                  <th>سعر الوحدة</th>
-                  <th>الإجمالي الفرعي</th>
-                </tr>
-              </thead>
-              <tbody>
-                {detailsOrder.items.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.productName}</td>
-                    <td>{item.quantity}</td>
-                    <td>{formatMoney(item.unitPrice)}</td>
-                    <td>{formatMoney(item.subtotal)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="modal order-details-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="order-details-header">
+              <h2>تفاصيل الطلب #{detailsOrder.id}</h2>
+              <button
+                className="modal-close"
+                onClick={() => setDetailsOrder(null)}
+                aria-label="إغلاق"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="order-details-meta">
+              <div>
+                <span>التاجر</span>
+                <strong>{detailsOrder.merchant.name}</strong>
+              </div>
+              <div>
+                <span>الهاتف</span>
+                <strong>{detailsOrder.merchant.phone}</strong>
+              </div>
+              <div>
+                <span>العنوان</span>
+                <strong>{detailsOrder.merchant.address}</strong>
+              </div>
+              <div>
+                <span>المنطقة</span>
+                <strong>{regionLabels[detailsOrder.merchant.region]}</strong>
+              </div>
+              <div>
+                <span>الحالة</span>
+                <strong>
+                  <span
+                    className={
+                      detailsOrder.status === 'completed' ? 'status-badge active' : 'status-badge inactive'
+                    }
+                  >
+                    {detailsOrder.status === 'completed' ? 'مكتمل' : 'قيد الانتظار'}
+                  </span>
+                </strong>
+              </div>
+              <div>
+                <span>التاريخ</span>
+                <strong>{formatDate(detailsOrder.createdAt)}</strong>
+              </div>
+            </div>
+
+            <div className="order-detail-items">
+              {detailsOrder.items.map((item) => (
+                <div key={item.id} className="order-detail-item">
+                  {item.product?.image ? (
+                    <img
+                      className="order-detail-item-image"
+                      src={resolveImageUrl(item.product.image)!}
+                      alt={item.productName}
+                    />
+                  ) : (
+                    <div className="order-detail-item-image placeholder" />
+                  )}
+                  <div className="order-detail-item-body">
+                    <h4>
+                      {item.productName}
+                      {item.hasWarranty && (
+                        <span className="order-detail-warranty-badge">كفالة {item.warrantyMonths} شهر</span>
+                      )}
+                    </h4>
+                    <p>
+                      {item.quantity} × {formatMoney(item.unitPrice)}
+                    </p>
+                  </div>
+                  <div className="order-detail-item-subtotal">{formatMoney(item.subtotal)}</div>
+                </div>
+              ))}
+            </div>
+
             <div className="order-details-total">
               <span>الإجمالي الكلي</span>
               <span>{formatMoney(detailsOrder.total)}</span>

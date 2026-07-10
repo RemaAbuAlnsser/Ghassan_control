@@ -77,10 +77,13 @@
   border-radius: 50%;
   border: 1px solid var(--silver-border);
   color: var(--silver);
-  font-size: 12px;
-  font-weight: 700;
   text-decoration: none;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.footer-social-icon svg {
+  width: 17px;
+  height: 17px;
 }
 
 .footer-social-icon:hover {

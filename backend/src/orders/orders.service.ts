@@ -64,7 +64,7 @@ export class OrdersService {
 
   findAll(): Promise<Order[]> {
     return this.ordersRepository.find({
-      relations: { merchant: true, items: true },
+      relations: { merchant: true, items: { product: true } },
       order: { id: 'DESC' },
     });
   }

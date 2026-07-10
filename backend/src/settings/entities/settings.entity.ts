@@ -29,6 +29,12 @@ export class Settings {
   @Column({ type: 'varchar', nullable: true })
   instagramUrl: string | null;
 
+  @Column({ type: 'varchar', nullable: true })
+  tiktokUrl: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  metaPixelId: string | null;
+
   @Column({
     type: 'varchar',
     length: 500,

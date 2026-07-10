@@ -13,6 +13,7 @@ import { OrdersModule } from './orders/orders.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { SettingsModule } from './settings/settings.module';
 import { UsersModule } from './users/users.module';
+import { PartnersModule } from './partners/partners.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { UsersModule } from './users/users.module';
     DashboardModule,
     SettingsModule,
     UsersModule,
+    PartnersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

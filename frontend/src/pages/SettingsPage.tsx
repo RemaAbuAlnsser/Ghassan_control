@@ -17,6 +17,8 @@ export default function SettingsPage() {
   const [whatsapp, setWhatsapp] = useState('')
   const [facebookUrl, setFacebookUrl] = useState('')
   const [instagramUrl, setInstagramUrl] = useState('')
+  const [tiktokUrl, setTiktokUrl] = useState('')
+  const [metaPixelId, setMetaPixelId] = useState('')
   const [heroTitle, setHeroTitle] = useState('')
   const [heroDescription, setHeroDescription] = useState('')
   const [heroLoopWords, setHeroLoopWords] = useState('')
@@ -37,6 +39,8 @@ export default function SettingsPage() {
     setWhatsapp(settings.whatsapp ?? '')
     setFacebookUrl(settings.facebookUrl ?? '')
     setInstagramUrl(settings.instagramUrl ?? '')
+    setTiktokUrl(settings.tiktokUrl ?? '')
+    setMetaPixelId(settings.metaPixelId ?? '')
     setHeroTitle(settings.heroTitle)
     setHeroDescription(settings.heroDescription ?? '')
     setHeroLoopWords(settings.heroLoopWords ?? '')
@@ -67,6 +71,8 @@ export default function SettingsPage() {
         whatsapp: whatsapp.trim(),
         facebookUrl: facebookUrl.trim(),
         instagramUrl: instagramUrl.trim(),
+        tiktokUrl: tiktokUrl.trim(),
+        metaPixelId: metaPixelId.trim(),
         heroTitle: heroTitle.trim(),
         heroDescription: heroDescription.trim(),
         heroLoopWords: heroLoopWords.trim(),
@@ -227,6 +233,30 @@ export default function SettingsPage() {
                 />
               </label>
             </div>
+
+            <label className="field">
+              <span>رابط تيك توك</span>
+              <input
+                type="url"
+                value={tiktokUrl}
+                onChange={(e) => setTiktokUrl(e.target.value)}
+                placeholder="https://tiktok.com/@..."
+              />
+            </label>
+          </section>
+
+          <section className="settings-section">
+            <h2>التسويق الإلكتروني</h2>
+
+            <label className="field">
+              <span>معرّف بيكسل ميتا (Meta Pixel ID)</span>
+              <input
+                type="text"
+                value={metaPixelId}
+                onChange={(e) => setMetaPixelId(e.target.value)}
+                placeholder="مثال: 1234567890123456"
+              />
+            </label>
           </section>
 
           {error && <p className="form-error">{error}</p>}
